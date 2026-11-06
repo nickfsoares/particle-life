@@ -1,4 +1,4 @@
-// Interface: controles, cores e matriz de interações editável.
+// Interface : contrôles, couleurs et matrice d'interactions éditable.
 const PALETTE = ['#ff5d5d', '#4dd2ff', '#ffd24d', '#7dff7a', '#c78bff', '#ff9a4d'];
 
 function cellStyle(v) {
@@ -10,7 +10,7 @@ function buildUI(app) {
   const $ = (id) => document.getElementById(id);
   const sim = app.sim;
 
-  // --- Tipos (cores) ---
+  // --- Types (couleurs) ---
   function renderTypes() {
     const box = $('types');
     box.innerHTML = '';
@@ -27,21 +27,22 @@ function buildUI(app) {
       const c = document.createElement('input');
       c.type = 'color';
       c.value = app.colors[k];
-      c.title = `Cor do tipo ${k + 1}`;
+      c.title = T.color(k + 1);
+      c.setAttribute('aria-label', c.title);
       c.oninput = () => { app.colors[k] = c.value; renderMatrix(); };
       colors.appendChild(c);
     }
   }
 
-  // --- Matriz ---
+  // --- Matrice ---
   function renderMatrix() {
     const K = sim.K, box = $('matrix');
     box.style.gridTemplateColumns = `28px repeat(${K}, 1fr)`;
     box.innerHTML = '<div class="corner"></div>';
     const dot = (k) => `<span class="dot" style="background:${app.colors[k]}"></span>`;
-    for (let j = 0; j < K; j++) box.insertAdjacentHTML('beforeend', `<div class="head" title="alvo">${dot(j)}</div>`);
+    for (let j = 0; j < K; j++) box.insertAdjacentHTML('beforeend', `<div class="head" title="${T.target}">${dot(j)}</div>`);
     for (let i = 0; i < K; i++) {
-      box.insertAdjacentHTML('beforeend', `<div class="head" title="partícula">${dot(i)}</div>`);
+      box.insertAdjacentHTML('beforeend', `<div class="head" title="${T.particle}">${dot(i)}</div>`);
       for (let j = 0; j < K; j++) {
         const cell = document.createElement('div');
         cell.className = 'cell';
@@ -56,8 +57,8 @@ function buildUI(app) {
   function paintCell(cell) {
     const v = sim.matrix[cell.dataset.i * sim.K + +cell.dataset.j];
     cell.style.cssText = cellStyle(v);
-    cell.textContent = v.toFixed(2);
-    cell.title = `Tipo ${+cell.dataset.i + 1} ${v >= 0 ? 'é atraído por' : 'repele'} tipo ${+cell.dataset.j + 1}`;
+    cell.textContent = num(v, 2);
+    cell.title = (v >= 0 ? T.pulls : T.pushes)(+cell.dataset.i + 1, +cell.dataset.j + 1);
   }
 
   function setValue(cell, v) {
@@ -91,18 +92,18 @@ function buildUI(app) {
     setValue(cell, cur + (e.key === 'ArrowRight' ? 0.1 : -0.1));
   });
 
-  // --- Sliders e botões ---
+  // --- Curseurs et boutons ---
   $('count').oninput = (e) => {
     $('countOut').textContent = e.target.value;
     app.setCount(+e.target.value);
   };
   $('speed').oninput = (e) => {
     app.speed = +e.target.value;
-    $('speedOut').textContent = app.speed.toFixed(2) + '×';
+    $('speedOut').textContent = num(app.speed, 2) + '×';
   };
   $('pause').onclick = () => {
     app.paused = !app.paused;
-    $('pause').textContent = app.paused ? 'Continuar' : 'Pausar';
+    $('pause').textContent = app.paused ? T.resume : T.pause;
   };
   $('reset').onclick = () => sim.scatter();
   $('random').onclick = () => { sim.randomize(); renderMatrix(); };

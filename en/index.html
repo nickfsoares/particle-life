@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Origin of Life Lab · Particle Life</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="app">
+    <div class="stage">
+      <canvas id="canvas"></canvas>
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <aside class="panel">
+      <header>
+        <nav class="lang"><a href="../">FR</a> · <a href="./" aria-current="page">EN</a></nav>
+        <p>Origin of Life Lab</p>
+        <h1>Particle Life</h1>
+      </header>
+
+      <section class="concept">
+        <h2>What is this?</h2>
+        <p>Colored particles attract or repel each other following simple rules. Nobody programs the shapes that appear: cells, chains and "organisms" emerge on their own.</p>
+        <p>This is how scientists imagine the leap from simple chemistry to life: order arising from local interactions.</p>
+      </section>
+
+      <section>
+        <h2>Particles</h2>
+        <p class="hint">More particles, more complex structures.</p>
+        <div class="row">
+          <input type="range" id="count" min="100" max="2000" step="50" value="1000" aria-label="Number of particles">
+          <output id="countOut">1000</output>
+        </div>
+      </section>
+
+      <section>
+        <h2>Types and colors</h2>
+        <p class="hint">Each color is a "chemical element" with its own rules.</p>
+        <div class="types" id="types"></div>
+        <div class="colors" id="colors"></div>
+      </section>
+
+      <section>
+        <h2>Interaction matrix</h2>
+        <p class="hint">Row: who feels the force. Column: who exerts it. Click and drag inside a cell (or use ← →).</p>
+        <div class="matrix" id="matrix"></div>
+        <div class="legend"><span class="neg">−1 repels</span><span>0 ignores</span><span class="pos">+1 attracts</span></div>
+      </section>
+
+      <section>
+        <h2>Speed</h2>
+        <div class="row">
+          <input type="range" id="speed" min="0.25" max="4" step="0.25" value="1" aria-label="Simulation speed">
+          <output id="speedOut">1.00×</output>
+        </div>
+      </section>
+
+      <section class="actions">
+        <button id="pause" class="primary">Pause</button>
+        <button id="reset">Reset</button>
+        <button id="random">Random</button>
+      </section>
+    </aside>
+  </div>
+
+  <script src="../i18n.js"></script>
+  <script src="../sim.js"></script>
+  <script src="../ui.js"></script>
+  <script src="../main.js"></script>
+</body>
+</html>

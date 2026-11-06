@@ -1,4 +1,4 @@
-// Laço principal e desenho no canvas.
+// Boucle principale et dessin sur le canvas.
 (function () {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
@@ -61,7 +61,7 @@
       for (let s = 0; s < sub; s++) sim.step(dt);
     }
     draw();
-    stats.textContent = `${sim.n} partículas · ${Math.round(fps)} fps`;
+    stats.textContent = T.stats(sim.n, Math.round(fps));
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);

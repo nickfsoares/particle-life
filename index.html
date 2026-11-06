@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laboratório de Origem da Vida · Particle Life</title>
+  <title>Laboratoire d'origine de la vie · Particle Life</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,55 +15,57 @@
 
     <aside class="panel">
       <header>
-        <p>Laboratório de Origem da Vida</p>
+        <nav class="lang"><a href="./" aria-current="page">FR</a> · <a href="en/">EN</a></nav>
+        <p>Laboratoire d'origine de la vie</p>
         <h1>Particle Life</h1>
       </header>
 
       <section class="concept">
-        <h2>O que é isto?</h2>
-        <p>Partículas coloridas se atraem ou se repelem segundo regras simples. Ninguém programa as formas que surgem: células, cadeias e "organismos" emergem sozinhos.</p>
-        <p>É assim que cientistas imaginam a passagem da química simples para a vida: ordem nascendo de interações locais.</p>
+        <h2>Qu'est-ce que c'est ?</h2>
+        <p>Des particules colorées s'attirent ou se repoussent selon des règles simples. Personne ne programme les formes qui apparaissent : cellules, chaînes et « organismes » émergent tout seuls.</p>
+        <p>C'est ainsi que les scientifiques imaginent le passage de la chimie simple à la vie : de l'ordre qui naît d'interactions locales.</p>
       </section>
 
       <section>
-        <h2>Partículas</h2>
-        <p class="hint">Mais partículas, mais estruturas complexas.</p>
+        <h2>Particules</h2>
+        <p class="hint">Plus il y a de particules, plus les structures sont complexes.</p>
         <div class="row">
-          <input type="range" id="count" min="100" max="2000" step="50" value="1000">
+          <input type="range" id="count" min="100" max="2000" step="50" value="1000" aria-label="Nombre de particules">
           <output id="countOut">1000</output>
         </div>
       </section>
 
       <section>
-        <h2>Tipos e cores</h2>
-        <p class="hint">Cada cor é um "elemento químico" com regras próprias.</p>
+        <h2>Types et couleurs</h2>
+        <p class="hint">Chaque couleur est un « élément chimique » avec ses propres règles.</p>
         <div class="types" id="types"></div>
         <div class="colors" id="colors"></div>
       </section>
 
       <section>
-        <h2>Matriz de interações</h2>
-        <p class="hint">Linha: quem sente a força. Coluna: quem a exerce. Clique e arraste na célula (ou use ← →).</p>
+        <h2>Matrice d'interactions</h2>
+        <p class="hint">Ligne : qui subit la force. Colonne : qui l'exerce. Cliquez et faites glisser dans la case (ou utilisez ← →).</p>
         <div class="matrix" id="matrix"></div>
-        <div class="legend"><span class="neg">−1 repele</span><span>0 ignora</span><span class="pos">+1 atrai</span></div>
+        <div class="legend"><span class="neg">−1 repousse</span><span>0 ignore</span><span class="pos">+1 attire</span></div>
       </section>
 
       <section>
-        <h2>Velocidade</h2>
+        <h2>Vitesse</h2>
         <div class="row">
-          <input type="range" id="speed" min="0.25" max="4" step="0.25" value="1">
-          <output id="speedOut">1.00×</output>
+          <input type="range" id="speed" min="0.25" max="4" step="0.25" value="1" aria-label="Vitesse de la simulation">
+          <output id="speedOut">1,00×</output>
         </div>
       </section>
 
       <section class="actions">
-        <button id="pause" class="primary">Pausar</button>
-        <button id="reset">Reiniciar</button>
-        <button id="random">Aleatório</button>
+        <button id="pause" class="primary">Pause</button>
+        <button id="reset">Réinitialiser</button>
+        <button id="random">Aléatoire</button>
       </section>
     </aside>
   </div>
 
+  <script src="i18n.js"></script>
   <script src="sim.js"></script>
   <script src="ui.js"></script>
   <script src="main.js"></script>

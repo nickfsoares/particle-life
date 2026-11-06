@@ -1,12 +1,12 @@
-// Motor do Particle Life: física com grade espacial (≈ O(n)) e mundo toroidal.
+// Moteur de Particle Life : physique avec grille spatiale (≈ O(n)) et monde torique.
 class Sim {
   constructor(w, h) {
     this.W = w;
     this.H = h;
-    this.rmax = 80;        // raio máximo de interação (px)
-    this.beta = 0.3;       // fração do raio com repulsão universal (evita sobreposição)
+    this.rmax = 80;        // rayon maximal d'interaction (px)
+    this.beta = 0.3;       // fraction du rayon à répulsion universelle (évite le chevauchement)
     this.forceFactor = 10;
-    this.halfLife = 0.04;  // meia-vida da velocidade (atrito), em segundos
+    this.halfLife = 0.04;  // demi-vie de la vitesse (frottement), en secondes
     this.K = 4;
     this.matrix = new Float32Array(16);
     this.n = 0;
@@ -24,7 +24,7 @@ class Sim {
     this.n = n;
   }
 
-  // Cria n partículas em posições aleatórias, distribuídas entre K tipos.
+  // Crée n particules à des positions aléatoires, réparties entre K types.
   init(n, K) {
     this.K = K;
     if (n !== this.n) this.alloc(n);
@@ -51,7 +51,7 @@ class Sim {
     this.H = h;
   }
 
-  // Redimensiona a matriz preservando os valores já existentes.
+  // Redimensionne la matrice en conservant les valeurs existantes.
   resizeMatrix(K, randomFill) {
     const old = this.matrix, oldK = this.K;
     const m = new Float32Array(K * K);
@@ -85,7 +85,7 @@ class Sim {
     const start = this.cellStart, cur = this.cursor;
     start.fill(0);
 
-    // Grade espacial por ordenação por contagem.
+    // Grille spatiale par tri par comptage.
     for (let i = 0; i < n; i++) {
       let cx = (x[i] / cw) | 0, cy = (y[i] / ch) | 0;
       if (cx >= cols) cx = cols - 1;
