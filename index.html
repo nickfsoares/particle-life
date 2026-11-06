@@ -3,25 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página de Teste</title>
-  <style>
-    body { font-family: system-ui, sans-serif; display: grid; place-items: center; min-height: 100vh; margin: 0; background: #f4f4f8; color: #222; }
-    main { text-align: center; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.1); }
-    button { padding: .6rem 1.2rem; border: 0; border-radius: 8px; background: #4f46e5; color: #fff; font-size: 1rem; cursor: pointer; }
-  </style>
+  <title>Laboratório de Origem da Vida · Particle Life</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <h1>Página de Teste</h1>
-    <p>Se você está vendo isto, o index.html funciona.</p>
-    <button id="btn">Clique aqui</button>
-    <p id="out"></p>
-  </main>
-  <script>
-    let n = 0;
-    document.getElementById('btn').addEventListener('click', () => {
-      document.getElementById('out').textContent = `Cliques: ${++n}`;
-    });
-  </script>
+  <div class="app">
+    <div class="stage">
+      <canvas id="canvas"></canvas>
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <aside class="panel">
+      <header>
+        <p>Laboratório de Origem da Vida</p>
+        <h1>Particle Life</h1>
+      </header>
+
+      <section class="concept">
+        <h2>O que é isto?</h2>
+        <p>Partículas coloridas se atraem ou se repelem segundo regras simples. Ninguém programa as formas que surgem: células, cadeias e "organismos" emergem sozinhos.</p>
+        <p>É assim que cientistas imaginam a passagem da química simples para a vida: ordem nascendo de interações locais.</p>
+      </section>
+
+      <section>
+        <h2>Partículas</h2>
+        <p class="hint">Mais partículas, mais estruturas complexas.</p>
+        <div class="row">
+          <input type="range" id="count" min="100" max="2000" step="50" value="1000">
+          <output id="countOut">1000</output>
+        </div>
+      </section>
+
+      <section>
+        <h2>Tipos e cores</h2>
+        <p class="hint">Cada cor é um "elemento químico" com regras próprias.</p>
+        <div class="types" id="types"></div>
+        <div class="colors" id="colors"></div>
+      </section>
+
+      <section>
+        <h2>Matriz de interações</h2>
+        <p class="hint">Linha: quem sente a força. Coluna: quem a exerce. Clique e arraste na célula (ou use ← →).</p>
+        <div class="matrix" id="matrix"></div>
+        <div class="legend"><span class="neg">−1 repele</span><span>0 ignora</span><span class="pos">+1 atrai</span></div>
+      </section>
+
+      <section>
+        <h2>Velocidade</h2>
+        <div class="row">
+          <input type="range" id="speed" min="0.25" max="4" step="0.25" value="1">
+          <output id="speedOut">1.00×</output>
+        </div>
+      </section>
+
+      <section class="actions">
+        <button id="pause" class="primary">Pausar</button>
+        <button id="reset">Reiniciar</button>
+        <button id="random">Aleatório</button>
+      </section>
+    </aside>
+  </div>
+
+  <script src="sim.js"></script>
+  <script src="ui.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
